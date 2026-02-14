@@ -11,9 +11,10 @@ import { Event } from "../app/emitter";
 import { hideGameboyMenu, selectGameboyMenu } from "../state/uiSlice";
 import PixelImage from "../styles/PixelImage";
 import SPL from "./SPL";
-import { REQUIRED_GAME_TOKEN_MINT_ADDRESS, REQUIRED_GAME_TOKEN_AMOUNT } from "../app/constants";
-
-
+import {
+  REQUIRED_GAME_TOKEN_MINT_ADDRESS,
+  REQUIRED_GAME_TOKEN_AMOUNT,
+} from "../app/constants";
 
 const StyledGameboyMenu = styled.div`
   position: absolute;
@@ -118,31 +119,47 @@ const loadingBarFill = keyframes`
 
 // Loading effect styled component
 const LoadingText = styled.div`
-  margin-top: 120px;
+  margin-top: 320px;
   font-family: "PressStart2P", sans-serif;
-  font-size: 0.8rem;
+  font-size: 1.8rem;
   text-align: center;
   color: #3493f8;
   opacity: 0;
-  animation: ${apearIn} 0s 600ms 1 linear forwards, ${loadingPulse} 1.5s infinite;
+  animation:
+    ${apearIn} 0s 600ms 1 linear forwards,
+    ${loadingPulse} 1.5s infinite;
 
   @media (max-width: 1000px) {
+    margin-top: 120px;
+    font-family: "PressStart2P", sans-serif;
     font-size: 0.6rem;
+    text-align: center;
+    color: #3493f8;
+    opacity: 0;
+    animation:
+      ${apearIn} 0s 600ms 1 linear forwards,
+      ${loadingPulse} 1.5s infinite;
   }
 `;
 
 // Prompt text when loading is complete
 const PromptText = styled.div`
-  margin-top: 120px;
+  margin-top: 15px;
   font-family: "PressStart2P", sans-serif;
-  font-size: 0.8rem;
+  font-size: 1.8rem;
   text-align: center;
   color: #3cb944; // Green color for success
   opacity: 0;
   animation: ${apearIn} 0s 600ms 1 linear forwards;
 
   @media (max-width: 1000px) {
+    margin-top: 15px;
+    font-family: "PressStart2P", sans-serif;
     font-size: 0.6rem;
+    text-align: center;
+    color: #3cb944; // Green color for success
+    opacity: 0;
+    animation: ${apearIn} 0s 600ms 1 linear forwards;
   }
 `;
 
@@ -189,15 +206,17 @@ const ConnectHint = styled.div<{ $error?: boolean }>`
   cursor: pointer;
   user-select: none;
   opacity: 0;
-  animation: 
+  animation:
     ${apearIn} 0s 300ms 1 linear forwards,
     ${blueRedFlash} 1s infinite;
 
-  ${props => props.$error && css`
-    animation: 
-      ${apearIn} 0s 300ms 1 linear forwards,
-      ${blueRedFlash} 0.5s infinite;
-  `}
+  ${(props) =>
+    props.$error &&
+    css`
+      animation:
+        ${apearIn} 0s 300ms 1 linear forwards,
+        ${blueRedFlash} 0.5s infinite;
+    `}
 
   &:hover {
     text-decoration: underline;
@@ -213,7 +232,7 @@ const TokenCheckMessage = styled.div`
   font-family: "PressStart2P", sans-serif;
   font-size: 0.7rem;
   text-align: center;
-  color:red;
+  color: red;
   opacity: 0;
   animation: ${apearIn} 0s 300ms 1 linear forwards;
 
@@ -227,7 +246,7 @@ const ToggleButton = styled.button`
   padding: 8px 16px;
   font-family: "PressStart2P", sans-serif;
   font-size: 0.6rem;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 4px;
@@ -243,8 +262,10 @@ const ToggleButton = styled.button`
 const checkTokenBalance = async (publicKey: any) => {
   try {
     // Use the same RPC endpoint as the rest of the app
-    const connection = new Connection("https://mainnet.helius-rpc.com/?api-key=fb1251b4-9828-40cb-a869-09bc2a7a9ee5");
-    
+    const connection = new Connection(
+      "https://mainnet.helius-rpc.com/?api-key=fb1251b4-9828-40cb-a869-09bc2a7a9ee5",
+    );
+
     // Get all token accounts owned by the wallet
     const tokenAccounts = await connection.getTokenAccountsByOwner(publicKey, {
       programId: TOKEN_PROGRAM_ID,
@@ -255,18 +276,21 @@ const checkTokenBalance = async (publicKey: any) => {
       // Convert Buffer to Uint8Array for AccountLayout.decode
       const accountData = new Uint8Array(account.data);
       const tokenInfo = AccountLayout.decode(accountData);
-      
+
       // Convert the mint address to string for comparison
       const accountMintAddress = tokenInfo.mint.toString();
-      
+
       // Check if this account holds tokens from our target contract and has sufficient balance
       // Note: tokenInfo.amount is a BigInt, so we need to compare appropriately
-      if (accountMintAddress === REQUIRED_GAME_TOKEN_MINT_ADDRESS && 
-          tokenInfo.amount >= BigInt(REQUIRED_GAME_TOKEN_AMOUNT * 1000000)) { // Assuming 6 decimals
+      if (
+        accountMintAddress === REQUIRED_GAME_TOKEN_MINT_ADDRESS &&
+        tokenInfo.amount >= BigInt(REQUIRED_GAME_TOKEN_AMOUNT * 1000000)
+      ) {
+        // Assuming 6 decimals
         return true;
       }
     }
-    
+
     return false;
   } catch (error) {
     console.error("Error checking SPL token balance:", error);
@@ -282,56 +306,65 @@ const GameboyMenu = () => {
   const [hasRequiredTokens, setHasRequiredTokens] = useState(true); // Default to true to bypass token check
   const [bypassMode, setBypassMode] = useState(true); // Toggle state for bypass mode
   const [loadingComplete, setLoadingComplete] = useState(false); // Track if loading is complete
+  const [walletLoadingComplete, setWalletLoadingComplete] = useState(false); // Track wallet connection loading
+  const [showWalletLoading, setShowWalletLoading] = useState(false); // Show wallet loading state
 
   // Handle Enter key press
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
-      if (event.key === 'Enter' && loadingComplete) {
+      if (event.key === "Enter" && loadingComplete) {
         dispatch(hideGameboyMenu());
       }
     };
 
-    window.addEventListener('keydown', handleKeyPress);
+    window.addEventListener("keydown", handleKeyPress);
     return () => {
-      window.removeEventListener('keydown', handleKeyPress);
+      window.removeEventListener("keydown", handleKeyPress);
     };
   }, [loadingComplete, dispatch]);
 
-  // Set loading complete after 10 seconds
+  // Set loading complete after 10 seconds (no wallet required)
   useEffect(() => {
-    if (connected) {
+    const timer = setTimeout(() => {
+      setLoadingComplete(true);
+    }, 10000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Handle wallet connection - show loading bar when wallet connects
+  useEffect(() => {
+    if (connected && !walletLoadingComplete) {
+      setShowWalletLoading(true);
+      setLoadingComplete(false); // Reset main loading
+
+      // Show wallet loading for 10 seconds
       const timer = setTimeout(() => {
+        setWalletLoadingComplete(true);
         setLoadingComplete(true);
-      }, 15000);
+        setShowWalletLoading(false);
+      }, 10000);
+
       return () => clearTimeout(timer);
     }
-  }, [connected]);
+  }, [connected, walletLoadingComplete]);
 
   useEvent(Event.A, () => {
-    // Only allow playing if loading is complete and user has required tokens
-    if (connected && loadingComplete && (bypassMode || hasRequiredTokens)) {
+    // Allow playing if loading is complete (no wallet required)
+    if (loadingComplete) {
       dispatch(hideGameboyMenu());
-    } else if (!loadingComplete) {
-      // Flash error if trying to enter before loading is complete
-      setFlashError(true);
-      window.setTimeout(() => setFlashError(false), 1500);
     } else {
-      // Flash error for other issues (token check, etc.)
+      // Flash error if trying to enter before loading is complete
       setFlashError(true);
       window.setTimeout(() => setFlashError(false), 1500);
     }
   });
 
   useEvent(Event.Start, () => {
-    // Only allow playing if loading is complete and user has required tokens
-    if (connected && loadingComplete && (bypassMode || hasRequiredTokens)) {
+    // Allow playing if loading is complete (no wallet required)
+    if (loadingComplete) {
       dispatch(hideGameboyMenu());
-    } else if (!loadingComplete) {
-      // Flash error if trying to enter before loading is complete
-      setFlashError(true);
-      window.setTimeout(() => setFlashError(false), 1500);
     } else {
-      // Flash error for other issues (token check, etc.)
+      // Flash error if trying to enter before loading is complete
       setFlashError(true);
       window.setTimeout(() => setFlashError(false), 1500);
     }
@@ -343,40 +376,30 @@ const GameboyMenu = () => {
     <StyledGameboyMenu>
       {/* <Text>SOLBOY</Text> */}
       <Nintendo src={nintendo} />
-      {/* Show loading effect when wallet is connected */}
-      {connected && (
+      {/* Show loading effect */}
+      {loadingComplete && !showWalletLoading ? (
+        <PromptText>Press ENTER to Play</PromptText>
+      ) : (
         <>
-          {loadingComplete ? (
-            <PromptText>Press ENTER to Play</PromptText>
-          ) : (
-            <LoadingText>Loading Game...</LoadingText>
-          )}
+          <LoadingText>
+            {showWalletLoading ? "Connecting Wallet..." : "Loading Game..."}
+          </LoadingText>
           <LoadingBarContainer>
-            <LoadingBarFill />
+            <LoadingBarFill key={showWalletLoading ? "wallet" : "game"} />
           </LoadingBarContainer>
         </>
       )}
-      <SPL onTokenCheckComplete={setHasRequiredTokens} bypassMode={bypassMode} />
-      {!connected && (
-        <ConnectHint $error={flashError} onClick={() => {
-          setFlashError(true);
-          window.setTimeout(() => setFlashError(false), 1500);
-        }} role="button" aria-label="Connect wallet to play">
-          Connect wallet to play
+      {/* Optional: Show wallet connection status but don't require it */}
+      {!connected && loadingComplete && (
+        <ConnectHint
+          $error={false}
+          style={{ fontSize: "0.8rem", opacity: 0.7 }}
+        >
+          Connect wallet for full features
         </ConnectHint>
-      )}
-      
-      
-      
-      
-      {/* Show token check message only when not in bypass mode and wallet is connected but user doesn't have tokens */}
-      {connected && !hasRequiredTokens && !bypassMode && (
-        <TokenCheckMessage>
-          ⚠️ Wallet not on Access list?
-        </TokenCheckMessage>
       )}
     </StyledGameboyMenu>
   );
 };
 
-export default GameboyMenu; 
+export default GameboyMenu;
