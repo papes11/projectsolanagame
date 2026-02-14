@@ -16,6 +16,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   if (typeof window !== "undefined") {
     // Type-safe Buffer polyfill for Solana libs
     (window as any).Buffer = (window as any).Buffer || Buffer;
+    
     // Disable vibration/haptics globally
     try {
       const nav: any = navigator as any;
@@ -23,6 +24,25 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         nav.vibrate = () => false;
       }
     } catch {}
+    
+    // Handle storage APIs for incognito mode
+    try {
+      localStorage.setItem('__test__', 'test');
+      localStorage.removeItem('__test__');
+    } catch (e) {
+      console.warn('localStorage not available (incognito mode?)');
+      // Provide fallback storage
+      const memoryStorage: any = {};
+      Storage.prototype.setItem = function(key: string, value: string) {
+        memoryStorage[key] = value;
+      };
+      Storage.prototype.getItem = function(key: string) {
+        return memoryStorage[key] || null;
+      };
+      Storage.prototype.removeItem = function(key: string) {
+        delete memoryStorage[key];
+      };
+    }
   }
   return (
     <WalletContextProvider>

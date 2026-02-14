@@ -9,6 +9,24 @@ module.exports = {
     ignoreDuringBuilds: false,
     dirs: ['pages', 'src'],
   },
+  // Add headers for service worker to work better in incognito
+  async headers() {
+    return [
+      {
+        source: '/sw.js',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate',
+          },
+          {
+            key: 'Service-Worker-Allowed',
+            value: '/',
+          },
+        ],
+      },
+    ];
+  },
   // Fix HMR issues with Next.js 15
   onDemandEntries: {
     // period (in ms) where the server will keep pages in the buffer
