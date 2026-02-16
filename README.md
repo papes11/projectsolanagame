@@ -1,81 +1,126 @@
-# pokepixel
+pokepixel
 
-A recreation of the classic Pokemon Red/Blue games built with React and TypeScript. This project aims to recreate the original Pokemon experience in the browser, maintaining the authentic feel while leveraging modern web technologies.
+Pokepixel is a Web3 pixel adventure game built with React and TypeScript, inspired by classic Pokemon Red/Blue gameplay. It recreates the nostalgic experience in the browser while integrating real on-chain rewards powered by Solana.
+
+Pokepixel is fully web-based and also compatible with the PSG1 (Play Solana Gen-1) handheld gaming console, enabling cross-platform Web3 gameplay.
 
 <img width="1675" alt="image" src="https://github.com/papes11/pokepixel/blob/80de266b080c9bf8ce375139cfcb8f914a4ba4bf/Screenshot%20(137).png" />
+Features
 
-## Features
+🎮 Classic pixel adventure gameplay
 
-- 🎮 Classic Pokepixel gameplay mechanics
-- 🗺️ Multiple maps and locations from the original games
-- ⚔️ Turn-based battle system
-- 🎵 Original game music and sound effects
-- 📱 Responsive design with GameBoy-style interface
-- 💾 Save/Load game functionality
-- 🏪 PokeMart and Pokemon Center implementations
-- 📦 Item and inventory system
-- 🎯 Trainer battles
-- 🌿 Wild Pokemon encounters
-- 📱 Mobile-friendly controls
+🗺️ Multiple maps and interactive NPCs
 
-## Tech Stack
+📦 Mystery box reward system (earn SOL or Pokepixel)
 
-- React 18
-- TypeScript
-- Redux Toolkit for state management
-- Styled Components for styling
-// Removed Firebase hosting
+⚡ On-chain reward logic powered by Solana
 
-## Getting Started
+🎮 Compatible with PSG1 handheld console
 
-### Prerequisites
+💰 Real asset ownership (SOL & Pokepixel tokens)
 
-- Node.js (v14 or higher)
-- Yarn package manager
+📱 Responsive GameBoy-style interface
 
-### Installation
+💾 Save/Load game functionality
 
-1. Clone the repository:
+📦 Item and inventory system
 
-```bash
+🎯 Trainer & wild encounters
+
+📱 Mobile-friendly controls
+
+PSG1 Integration
+
+Pokepixel runs both in the browser and on the PSG1 (Play Solana Gen-1) Web3 gaming console.
+
+When played on PSG1:
+
+🎮 Native console gameplay experience
+
+🔐 Integrated Solana wallet support
+
+⚡ Faster interaction with on-chain rewards
+
+🎁 Optimized / higher reward incentives for console players
+
+This enables Pokepixel to bridge traditional gaming hardware with real blockchain rewards.
+
+Solana Integration
+
+Pokepixel uses Solana for:
+
+On-chain reward distribution
+
+Token minting
+
+Secure transaction verification
+
+Wallet connectivity
+
+Real-time asset ownership
+
+All reward logic is powered by Solana’s fast and low-fee infrastructure, ensuring smooth gameplay without disrupting the user experience.
+
+Tech Stack
+
+React 18
+
+TypeScript
+
+Next.js
+
+Solana Web3.js
+
+Redux Toolkit
+
+Styled Components
+
+Getting Started
+Prerequisites
+
+Node.js (v14 or higher)
+
+Yarn package manager
+
+Installation
 git clone https://github.com/yourusername/.git
 cd pokepixel
-```
 
-2. Install dependencies:
-
-```bash
 yarn install
-```
 
-3. Start the development server:
-
-```bash
 yarn start
-```
 
-The game will be available at `http://localhost:3000`
 
-## Controls
+The game will be available at:
 
-- **Arrow Keys**: Move character
-- **Space**: Menu
-- **Enter**: Confirm
-- **Space**: Pause
+http://localhost:3000
 
-## Project Structure
+Controls
 
-- `/src/components`: React components for game UI
-- `/src/maps`: Game map data and configurations
-- `/src/state`: Redux store and state management
-- `/src/assets`: Game assets (sprites, music, etc.)
-- `/src/styles`: Global styles and theme configurations
+Arrow Keys: Move character
 
-## Environment Variables
+Space: Menu / Pause
 
-Create a `.env.local` in the project root with:
+Enter: Confirm
 
-```bash
+Project Structure
+
+/src/components – Game UI components
+
+/src/maps – Map data & configurations
+
+/src/state – Redux store
+
+/src/assets – Sprites, music, assets
+
+/src/styles – Global styles & themes
+
+/src/solana – On-chain logic & integrations
+
+Environment Variables
+
+Create a .env.local file:
+
 NEXT_PUBLIC_RECIPIENT_ADDRESS=Emo62hDD3NppK3K7A5PLF7CwEy2eJpCYnVM6zMwtjZ16
 RPC_ENDPOINT=https://api.devnet.solana.com
 MERKLE_TREE_ADDRESS=REPLACE_WITH_YOUR_TREE
@@ -84,33 +129,41 @@ MINT_NAME=QN Pixel
 MINT_SYMBOL=QNPIX
 MINT_URI=https://qn-shared.quicknode-ipfs.com/ipfs/QmQFh6WuQaWAMLsw9paLZYvTsdL5xJESzcoSxzb6ZU3Gjx
 MINT_SELLER_FEE_BPS=500
-```
 
-On Vercel, set `RPC_ENDPOINT`, `MERKLE_TREE_ADDRESS`, `SIGNER_SECRET_KEY`, and the optional mint metadata as Project Environment Variables. Do not expose `SIGNER_SECRET_KEY` as public.
 
-## Contributing
+⚠️ Do NOT expose SIGNER_SECRET_KEY publicly.
+On Vercel, configure secure environment variables in project settings.
 
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Fork the repository
 
-## Special thanks to
+Create a branch (git checkout -b feature/AmazingFeature)
 
-- [darkmurkrow YouTube channel](https://www.youtube.com/@darkmurkrow) for uploading playthroughs of the game used for reference
-- [Brandon Smith](https://www.brandons.me/) for creating the [Gameboy Codepen](https://codepen.io/brundolf/pen/beagbQ) used for the mobile view
-- [luttje](https://github.com/luttje) for creating the [Pokemon GameBoy CSS](https://github.com/luttje/css-pokemon-gameboy/tree/main) used for some styling
-- [The Spriters Resource](https://www.spriters-resource.com/game_boy_gbc/pokemonredblue/) for uploading sprites and assets used
-- [Video Game Music](https://downloads.khinsider.com/game-soundtracks/album/pokemon-game-boy-pok-mon-sound-complete-set-play-cd) for uploading the music and sounds used
-- [Strategy Wiki](https://strategywiki.org/wiki/Pok%C3%A9mon_Red_and_Blue/Walkthrough) for uploading information on trainers, maps and items
+Commit (git commit -m 'Add AmazingFeature')
 
-## License
+Push (git push origin feature/AmazingFeature)
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Open a Pull Request
 
-## Disclaimer
+Special Thanks
 
-This is a fan-made project and is not affiliated with or endorsed by Nintendo, Game Freak, or The Pokemon Company. All Pokemon-related content is property of their respective owners.
+darkmurkrow (YouTube)
+
+Brandon Smith (GameBoy Codepen)
+
+luttje (Pokemon GameBoy CSS)
+
+The Spriters Resource
+
+Video Game Music
+
+Strategy Wiki
+
+License
+
+MIT License – see LICENSE
+
+Disclaimer
+
+This is a fan-made project and is not affiliated with or endorsed by Nintendo, Game Freak, or The Pokemon Company. All related content belongs to its respective owners.
