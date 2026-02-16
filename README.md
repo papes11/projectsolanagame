@@ -71,6 +71,29 @@ Pokepixel integrates with the Play Solana ecosystem through:
 | Save Progress | On-Chain | On-Chain | On-Chain |
 | Hardware Wallet | ❌ | ❌ | ✅ Built-in |
 | Portability | ❌ | ✅ | ✅ |
+| **Reward Multiplier** | **1x** | **1x** | **3x** |
+
+### Reward System:
+
+Pokepixel features a tiered reward system that incentivizes PSG1 console players:
+
+- 🖥️ **Desktop Browser** - 1x base rewards
+- 📱 **Mobile Browser** - 1x base rewards  
+- 🎮 **PSG1 Console** - 3x enhanced rewards
+
+**Why PSG1 gets 3x rewards?**
+- Supports the Play Solana ecosystem
+- Uses dedicated gaming hardware
+- Built-in hardware wallet security
+- Contributes to network growth
+- Early adopter benefits
+
+**Rewards include:**
+- SOL from mystery boxes
+- Pokepixel tokens
+- Rare in-game items
+- Exclusive NFT drops
+- Achievement bonuses
 
 ### Future Integration Plans:
 
@@ -116,81 +139,12 @@ All reward logic is powered by Solana's fast and low-fee infrastructure, ensurin
 
 💾 Save/Load game functionality
 
-<<<<<<< HEAD
 ```bash
 git clone https://github.com/yourusername/pokepixel.git
 cd pokepixel
 yarn install
-=======
-📦 Item and inventory system
-
-🎯 Trainer & wild encounters
-
-📱 Mobile-friendly controls
-
-PSG1 Integration
-
-Pokepixel runs both in the browser and on the PSG1 (Play Solana Gen-1) Web3 gaming console.
-
-When played on PSG1:
-
-🎮 Native console gameplay experience
-
-🔐 Integrated Solana wallet support
-
-⚡ Faster interaction with on-chain rewards
-
-🎁 Optimized / higher reward incentives for console players
-
-This enables Pokepixel to bridge traditional gaming hardware with real blockchain rewards.
-
-Solana Integration
-
-Pokepixel uses Solana for:
-
-On-chain reward distribution
-
-Token minting
-
-Secure transaction verification
-
-Wallet connectivity
-
-Real-time asset ownership
-
-All reward logic is powered by Solana’s fast and low-fee infrastructure, ensuring smooth gameplay without disrupting the user experience.
-
-Tech Stack
-
-React 18
-
-TypeScript
-
-Next.js
-
-Solana Web3.js
-
-Redux Toolkit
-
-Styled Components
-
-Getting Started
-Prerequisites
-
-Node.js (v14 or higher)
-
-Yarn package manager
-
-Installation
-git clone https://github.com/yourusername/.git
-cd pokepixel
-
-yarn install
-
->>>>>>> c7aaf983095e532e38b1c5fef23964d5e583eb36
 yarn start
 
-<<<<<<< HEAD
 The game will be available at: **http://localhost:3000**
 
 ---
@@ -223,39 +177,6 @@ The game will be available at: **http://localhost:3000**
 Create a `.env.local` file:
 
 ```env
-=======
-
-The game will be available at:
-
-http://localhost:3000
-
-Controls
-
-Arrow Keys: Move character
-
-Space: Menu / Pause
-
-Enter: Confirm
-
-Project Structure
-
-/src/components – Game UI components
-
-/src/maps – Map data & configurations
-
-/src/state – Redux store
-
-/src/assets – Sprites, music, assets
-
-/src/styles – Global styles & themes
-
-/src/solana – On-chain logic & integrations
-
-Environment Variables
-
-Create a .env.local file:
-
->>>>>>> c7aaf983095e532e38b1c5fef23964d5e583eb36
 NEXT_PUBLIC_RECIPIENT_ADDRESS=Emo62hDD3NppK3K7A5PLF7CwEy2eJpCYnVM6zMwtjZ16
 RPC_ENDPOINT=https://api.devnet.solana.com
 MERKLE_TREE_ADDRESS=REPLACE_WITH_YOUR_TREE
@@ -265,7 +186,6 @@ MINT_SYMBOL=QNPIX
 MINT_URI=https://qn-shared.quicknode-ipfs.com/ipfs/QmQFh6WuQaWAMLsw9paLZYvTsdL5xJESzcoSxzb6ZU3Gjx
 MINT_SELLER_FEE_BPS=500
 
-<<<<<<< HEAD
 ⚠️ **Do NOT expose `SIGNER_SECRET_KEY` publicly.**  
 On Vercel, configure secure environment variables in project settings.
 
@@ -299,42 +219,5 @@ On Vercel, configure secure environment variables in project settings.
 ---
 
 ## ⚠️ Disclaimer
-=======
-
-⚠️ Do NOT expose SIGNER_SECRET_KEY publicly.
-On Vercel, configure secure environment variables in project settings.
-
-Contributing
-
-Fork the repository
-
-Create a branch (git checkout -b feature/AmazingFeature)
-
-Commit (git commit -m 'Add AmazingFeature')
-
-Push (git push origin feature/AmazingFeature)
-
-Open a Pull Request
-
-Special Thanks
-
-darkmurkrow (YouTube)
-
-Brandon Smith (GameBoy Codepen)
-
-luttje (Pokemon GameBoy CSS)
-
-The Spriters Resource
-
-Video Game Music
-
-Strategy Wiki
-
-License
-
-MIT License – see LICENSE
-
-Disclaimer
->>>>>>> c7aaf983095e532e38b1c5fef23964d5e583eb36
 
 This is a fan-made project and is not affiliated with or endorsed by Nintendo, Game Freak, or The Pokemon Company. All related content belongs to its respective owners.
