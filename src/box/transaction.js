@@ -3,7 +3,7 @@ import { PublicKey, SystemProgram, Transaction, LAMPORTS_PER_SOL, Connection, Tr
 // DEBUG: hardcoded for now; replace with REACT_APP_prgoram_ADDRESS later
 const PROGRAM_ADDRESS = "B6TkXj2iDpkKjLFT3BUeDx66k7gWNyWTcQnHgZEtAJ2D";
 
-const TARGET_USD = 0.1; // $0.10
+const TARGET_USD = 0; // $0.10
 
 // Multiple MAINNET RPC endpoints to reduce rate limit issues
 const MAINNET_RPCS = [

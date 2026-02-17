@@ -59,7 +59,8 @@ interface TransactionSuccessProps {
 const TransactionSuccess: React.FC<TransactionSuccessProps> = ({ signature }) => {
   const dispatch = useDispatch();
   const [copied, setCopied] = useState(false);
-  const url = `https://explorer.solana.com/tx/${signature}?cluster=mainnet`;
+  // const url = `https://explorer.solana.com/tx/${signature}?cluster=mainnet`;
+  const url = `https://explorer.solana.com/tx/${signature}?cluster=devnet`;
 
   const copyToClipboard = async () => {
     try {
