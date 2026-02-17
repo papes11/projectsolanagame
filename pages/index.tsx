@@ -88,8 +88,8 @@ export default function HomePage(): JSX.Element {
           <button className="btn secondary-btn silver-text" onClick={() => setIsClaimPopupOpen(true)}>AIRDROP</button>
           <button className="btn secondary-btn silver-text" onClick={() => handleNavigation('/docs', false, true)}>DOCS</button>
           <button className="btn secondary-btn silver-text" onClick={() => handleNavigation('/swap', false, true)}>SWAP</button>
-          <button className="btn secondary-btn silver-text" onClick={() => handleNavigation('', true, true)}>X</button>
-          <button className="btn secondary-btn silver-text" onClick={() => handleNavigation('', true, true)}>TELEGRAM</button>
+          <button className="btn secondary-btn silver-text" onClick={() => handleNavigation('https://x.com/pokepixelsolana', true, true)}>X</button>
+          <button className="btn secondary-btn silver-text" onClick={() => handleNavigation('https://x.com/pokepixelsolana', true, true)}>TELEGRAM</button>
           <button className="btn primary-btn" onClick={() => handleNavigation('/game')}>ENTER GAME</button>
         </nav>
       </header>
