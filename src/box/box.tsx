@@ -76,7 +76,7 @@ const Box: React.FC<BoxProps> = ({ x, y, type = 'dynamic', onOpen }) => {
 
   useEvent(Event.A, () => {
     // If we're already showing a message, don't process the event
-    if (isShowingMessage) {
+    if (isShowingMessage || currentText) {
       return;
     }
 
@@ -160,6 +160,7 @@ const Box: React.FC<BoxProps> = ({ x, y, type = 'dynamic', onOpen }) => {
                     // Check if it's a cancellation message
                     if (errorMessage.includes("cancelled") || errorMessage.includes("rejected")) {
                       dispatch(hideConfirmationMenu()); // Ensure confirmation menu is hidden
+                      setIsShowingMessage(true); // Keep message state active
                       dispatch(showText([
                         "Transaction cancelled (B)",
                         "Try wallet browser phantom, trust, mises",
@@ -212,6 +213,7 @@ const Box: React.FC<BoxProps> = ({ x, y, type = 'dynamic', onOpen }) => {
                   // Check if it's a cancellation message
                   if (errorMessage.includes("cancelled") || errorMessage.includes("rejected")) {
                     dispatch(hideConfirmationMenu()); // Ensure confirmation menu is hidden
+                    setIsShowingMessage(true); // Keep message state active
                     dispatch(showText([
                       "Transaction cancelled (B)",
                       "Try wallet browser phantom, trust, mises",
@@ -232,7 +234,7 @@ const Box: React.FC<BoxProps> = ({ x, y, type = 'dynamic', onOpen }) => {
               },
               cancel: () => {
                 dispatch(hideConfirmationMenu());
-                setIsShowingMessage(false); // Reset the message state
+                setIsShowingMessage(true); // Keep message state active during cancellation
                 // Show cancellation message with B button inside
                 dispatch(showText([
                   "Transaction cancelled (B)"
