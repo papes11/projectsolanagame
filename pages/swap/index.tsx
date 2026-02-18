@@ -87,7 +87,7 @@ const SwapContent = () => {
     try {
       // Create connection to Solana
       // const connection = new Connection("https://mainnet.helius-rpc.com/?api-key=fb1251b4-9828-40cb-a869-09bc2a7a9ee5");
-      const connection = new Connection(" https://api.devnet.solana.com");
+      const connection = new Connection("https://api.devnet.solana.com");
       
       // Check transactions to specific address
       const count = await checkTransactionsToAddress(connection, publicKey);
