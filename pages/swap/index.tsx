@@ -86,8 +86,8 @@ const SwapContent = () => {
     
     try {
       // Create connection to Solana
-      const connection = new Connection("https://mainnet.helius-rpc.com/?api-key=fb1251b4-9828-40cb-a869-09bc2a7a9ee5");
-      // const connection = new Connection(" https://api.devnet.solana.com");
+      // const connection = new Connection("https://mainnet.helius-rpc.com/?api-key=fb1251b4-9828-40cb-a869-09bc2a7a9ee5");
+      const connection = new Connection(" https://api.devnet.solana.com");
       
       // Check transactions to specific address
       const count = await checkTransactionsToAddress(connection, publicKey);
@@ -245,13 +245,13 @@ export default function SwapPage() {
           <footer className="swap-footer">
             <div className="footer-container">
               <div className="socials">
-                <a href="https://x.com" target="_blank" rel="noreferrer" aria-label="X/Twitter">
+                <a href="https://x.com/pokepixelsolana" target="_blank" rel="noreferrer" aria-label="X/Twitter">
                   X
                 </a>
-                <a href="https://telegram.com" target="_blank" rel="noreferrer" aria-label="Discord">
+                <a href="https://x.com/pokepixelsolana" target="_blank" rel="noreferrer" aria-label="Discord">
                   Telegram
                 </a>
-                {/* <a href="https://pump.fun/coin/6XV9E6HgVwkdyzfnES4DVDjgAsKfPeNgKwYgYBumpump" target="_blank" rel="noreferrer" aria-label="GitHub">
+                {/* <a href="" target="_blank" rel="noreferrer" aria-label="GitHub">
                   pumpfun
                 </a> */}
               </div>
