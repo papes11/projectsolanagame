@@ -159,8 +159,9 @@ const Box: React.FC<BoxProps> = ({ x, y, type = 'dynamic', onOpen }) => {
                     const errorMessage = mintErr || "Transaction failed. Please try again.";
                     // Check if it's a cancellation message
                     if (errorMessage.includes("cancelled") || errorMessage.includes("rejected")) {
+                      dispatch(hideConfirmationMenu()); // Ensure confirmation menu is hidden
                       dispatch(showText([
-                        "Transaction cancelled",
+                        "Transaction cancelled (B)",
                         "Try wallet browser phantom, trust, mises",
                         "Click box again to retry"
                       ]));
@@ -210,8 +211,9 @@ const Box: React.FC<BoxProps> = ({ x, y, type = 'dynamic', onOpen }) => {
                   
                   // Check if it's a cancellation message
                   if (errorMessage.includes("cancelled") || errorMessage.includes("rejected")) {
+                    dispatch(hideConfirmationMenu()); // Ensure confirmation menu is hidden
                     dispatch(showText([
-                      "Transaction cancelled",
+                      "Transaction cancelled (B)",
                       "Try wallet browser phantom, trust, mises",
                       "Click box again to retry"
                     ]));
