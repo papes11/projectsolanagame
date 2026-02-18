@@ -63,6 +63,15 @@ const Gameboy = ({ children }: Props) => {
   // Emit helpers that stop propagation (avoid passive listener preventDefault warnings)
   const emitPrevent = (ev: Event, extra?: Event[]) => (e: React.TouchEvent | React.MouseEvent) => {
     if (e && typeof (e as any).stopPropagation === "function") (e as any).stopPropagation();
+    
+    // Prevent double-firing on mobile (both touch and mouse events fire)
+    const currentEventType = e.type;
+    if (currentEventType === 'mousedown' && lastEventTypeRef.current === 'touchstart') {
+      lastEventTypeRef.current = currentEventType;
+      return;
+    }
+    lastEventTypeRef.current = currentEventType;
+    
     // Emit discrete event(s) first so menus react immediately, then continuous
     if (extra && extra.length) extra.forEach((x) => emitter.emit(x));
     emitter.emit(ev);

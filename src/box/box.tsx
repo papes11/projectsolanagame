@@ -132,7 +132,7 @@ const Box: React.FC<BoxProps> = ({ x, y, type = 'dynamic', onOpen }) => {
           
           dispatch(
             showConfirmationMenu({
-              preMessage: "BOX found accept or decline?",
+              preMessage: "BOX found open treasure or not?",
               postMessage: postMessage,
               confirm: () => {
                 if (!publicKey) {
@@ -231,11 +231,9 @@ const Box: React.FC<BoxProps> = ({ x, y, type = 'dynamic', onOpen }) => {
               cancel: () => {
                 dispatch(hideConfirmationMenu());
                 setIsShowingMessage(false); // Reset the message state
-                // Inform user that box is still available during visibility time
+                // Show cancellation message with B button inside
                 dispatch(showText([
-                  "Transaction cancelled",
-                  "Try wallet browser phantom, trust, mises",
-                  "Click box again to retry"
+                  "Transaction cancelled (B)"
                 ]));
                 // Don't call onOpen for cancelled transactions
               },
