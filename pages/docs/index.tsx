@@ -674,7 +674,7 @@ export default function DocsPage() {
       
       <footer className="docs-footer">
         <div className="footer-container">
-          <span>© {new Date().getFullYear()} Pokepixel. All rights reserved.</span>
+          <span style={{ color: 'white' }}>© {new Date().getFullYear()} Pokepixel. All rights reserved.</span>
         </div>
       </footer>
 
@@ -686,27 +686,26 @@ export default function DocsPage() {
   :global(html, body) { 
     margin: 0; 
     padding: 0; 
-    background: #000000;
-    color: #c0c0c0;
+    background: #0a0a0a;
+    color: #b0c4b0;
     width: 100%;
     overflow-x: hidden;
-    scroll-padding-top: 80px; /* Smooth scrolling offset for fixed navbar */
+    scroll-padding-top: 80px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
-  /* Override global game CSS on docs: ensure normal flow and no centering */
   :global(body) {
     display: block;
     justify-content: initial;
     align-items: initial;
-    padding: 0; /* ensure no body padding pushes content */
+    padding: 0;
   }
   
   .docs-root { 
     min-height: 100vh; 
     display: flex; 
     flex-direction: column; 
-    background: #000000; 
-    color: #c0c0c0; 
+    background: #0a0a0a; 
+    color: #b0c4b0; 
     width: 100%;
     margin: 0;
     padding: 0;
@@ -714,15 +713,15 @@ export default function DocsPage() {
   
   .docs-nav { 
     height: 64px; 
-    border-bottom: 1px solid #333333; 
-    background: #111111; 
+    border-bottom: 1px solid #1a2e1a; 
+    background: #0d0d0d; 
     position: sticky; 
     top: 0; 
     z-index: 30; 
     width: 100%;
     margin: 0;
     padding: 0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.6), 0 1px 0 rgba(57,255,20,0.15);
   }
   
   .nav-container {
@@ -751,7 +750,7 @@ export default function DocsPage() {
   .brand span { 
     font-weight: 700; 
     font-size: 18px; 
-    color: #c0c0c0; 
+    color: #39ff14; 
     flex: 1; 
   }
   
@@ -763,7 +762,7 @@ export default function DocsPage() {
     line-height: 1; 
     cursor: pointer; 
     padding: 6px 8px; 
-    color: #c0c0c0; 
+    color: #39ff14; 
   }
 
   .docs-main { 
@@ -775,12 +774,12 @@ export default function DocsPage() {
     margin: 0;
     padding: 0;
     min-height: calc(100vh - 64px);
-    background: #000000;
+    background: #0a0a0a;
   }
   
   .docs-sidebar { 
-    border-right: 1px solid #333333; 
-    background: #111111; 
+    border-right: 1px solid #1a2e1a; 
+    background: #0d0d0d; 
     position: sticky; 
     top: 64px; 
     height: calc(100vh - 64px); 
@@ -788,7 +787,7 @@ export default function DocsPage() {
     width: 100%;
     margin: 0;
     padding: 0;
-    box-shadow: inset 0 0 18px rgba(0,0,0,0.6);
+    box-shadow: inset 0 0 18px rgba(0,0,0,0.8);
   }
   
   .sidebar-content {
@@ -804,7 +803,7 @@ export default function DocsPage() {
     background: transparent; 
     padding: 14px 24px; 
     margin: 0;
-    color: #c0c0c0; 
+    color: #7a9a7a; 
     cursor: pointer; 
     border-right: 3px solid transparent;
     transition: all 0.2s ease;
@@ -812,15 +811,15 @@ export default function DocsPage() {
   }
   
   .nav-item:hover { 
-    background: #222222; 
-    color: #ffffff; 
+    background: #111a11; 
+    color: #39ff14; 
   }
   
   .nav-item.active { 
-    background: #222222; 
-    color: #ffffff; 
+    background: #111a11; 
+    color: #39ff14; 
     font-weight: 700; 
-    border-right-color: #c0c0c0;
+    border-right-color: #39ff14;
   }
 
   .docs-content { 
@@ -829,7 +828,7 @@ export default function DocsPage() {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    color: #c0c0c0;
+    color: #b0c4b0;
   }
   
   .content-container {
@@ -842,25 +841,21 @@ export default function DocsPage() {
   .docs-content h1 { 
     margin: 0 0 24px 0; 
     font-size: 32px; 
-    color: #ffffff; 
+    color: #39ff14; 
     font-weight: 800;
-    /* Add scroll margin to account for fixed navbar */
     scroll-margin-top: 80px;
-    /* Add padding top to ensure visibility */
     padding-top: 16px;
   }
   
   .docs-content h2 { 
     margin: 32px 0 16px 0;
     font-size: 24px;
-    color: #e0e0e0;
+    color: #c8ffc8;
     font-weight: 700;
-    /* Add scroll margin for h2 as well */
     scroll-margin-top: 80px;
     padding-top: 16px;
   }
 
-  /* Ensure all heading levels account for sticky nav when linked via hash */
   .docs-content h3,
   .docs-content h4,
   .docs-content h5,
@@ -871,28 +866,91 @@ export default function DocsPage() {
   .docs-content h3 { 
     margin: 24px 0 12px 0; 
     font-size: 18px; 
-    color: #d0d0d0; 
+    color: #a8e8a8; 
     font-weight: 700;
   }
   
   .docs-content p, .docs-content li { 
-    color: #c0c0c0; 
+    color: #b0c4b0; 
     line-height: 1.7; 
     font-size: 16px; 
     margin-bottom: 16px;
   }
   
   .docs-content code { 
-    background: #111111; 
+    background: #0d140d; 
     padding: 4px 8px; 
     border-radius: 6px; 
     font-family: 'Monaco', 'Courier New', monospace;
     font-size: 14px;
-    color: #c0c0c0;
+    color: #39ff14;
   }
   
   .docs-content ul, .docs-content ol { 
     padding-left: 24px; 
+  }
+
+  /* Steps */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: #0d140d;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #1a2e1a;
+  }
+
+  .step-number {
+    background: #39ff14;
+    color: #0a0a0a;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .step-content h3 {
+    margin: 0 0 6px 0 !important;
+    color: #c8ffc8 !important;
+  }
+
+  .step-content p {
+    margin: 0 !important;
+    font-size: 14px;
+    color: #b0c4b0;
+  }
+
+  /* Gameplay grid */
+  .gameplay-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin: 24px 0;
+  }
+
+  .gameplay-item {
+    background: #0d140d;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #1a2e1a;
+  }
+
+  .gameplay-item h3 {
+    margin: 0 0 10px 0 !important;
+    color: #39ff14 !important;
   }
 
   /* Feature Grid */
@@ -905,29 +963,30 @@ export default function DocsPage() {
   }
 
   .feature-card {
-    background: #111111;
+    background: #0d140d;
     padding: 24px;
     border-radius: 12px;
-    border: 1px solid #333333;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.5), inset 0 3px 10px rgba(255,255,255,0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #1a2e1a;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.6), inset 0 3px 10px rgba(57,255,20,0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   }
 
   .feature-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.7), 0 0 12px rgba(57,255,20,0.08);
+    border-color: #2a4a2a;
   }
 
   .feature-card h3 {
     margin: 0 0 12px 0;
     font-size: 18px;
-    color: #ffffff;
+    color: #c8ffc8;
   }
 
   .feature-card p {
     margin: 0;
     font-size: 14px;
-    color: #c0c0c0;
+    color: #7a9a7a;
   }
 
   /* Rewards */
@@ -949,16 +1008,16 @@ export default function DocsPage() {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background: #111111;
+    background: #0d140d;
     border-radius: 8px;
     text-align: center;
-    border: 1px solid #333333;
+    border: 1px solid #1a2e1a;
   }
 
   .reward-icon {
     font-size: 24px;
     margin-bottom: 8px;
-    color: #c0c0c0;
+    color: #39ff14;
   }
 
   /* Roadmap */
@@ -971,11 +1030,11 @@ export default function DocsPage() {
   }
 
   .roadmap-phase {
-    background: #111111;
+    background: #0d140d;
     padding: 24px;
     border-radius: 8px;
-    border-left: 4px solid #333333;
-    border: 1px solid #333333;
+    border-left: 4px solid #1a2e1a;
+    border: 1px solid #1a2e1a;
   }
 
   .phase-header {
@@ -988,7 +1047,7 @@ export default function DocsPage() {
   .phase-header h3 {
     margin: 0;
     flex: 1;
-    color: #ffffff;
+    color: #c8ffc8;
   }
 
   .phase-status {
@@ -996,35 +1055,39 @@ export default function DocsPage() {
     border-radius: 20px;
     font-size: 12px;
     font-weight: 600;
-    background: #222222;
-    color: #c0c0c0;
+    background: #111a11;
+    color: #7a9a7a;
+    border: 1px solid #1a2e1a;
   }
 
   .phase-status.current {
-    background: #333333;
-    color: #ffffff;
+    background: #1a3a1a;
+    color: #39ff14;
+    border-color: #39ff14;
+    box-shadow: 0 0 8px rgba(57,255,20,0.3);
   }
 
   .phase-status.upcoming {
-    background: #222222;
-    color: #a0a0a0;
+    background: #111a11;
+    color: #5a7a5a;
+    border-color: #1a2e1a;
   }
 
   /* Contract */
   .contract-card {
-    background: #111111;
+    background: #0d140d;
     padding: 24px;
     border-radius: 8px;
     margin: 24px 0;
     width: 100%;
-    border: 1px solid #333333;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+    border: 1px solid #1a2e1a;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
   }
 
   .contract-address {
     display: block;
-    background: #111111;
-    color: #c0c0c0;
+    background: #080e08;
+    color: #39ff14;
     padding: 16px;
     border-radius: 8px;
     font-family: 'Monaco', 'Courier New', monospace;
@@ -1032,12 +1095,12 @@ export default function DocsPage() {
     margin: 16px 0;
     word-break: break-all;
     width: 100%;
-    border: 1px solid #333333;
-    box-shadow: inset 0 3px 10px rgba(255,255,255,0.05);
+    border: 1px solid #1a2e1a;
+    box-shadow: inset 0 3px 10px rgba(0,0,0,0.5);
   }
 
   .contract-note {
-    color: #a0a0a0;
+    color: #5a7a5a;
     font-size: 14px;
     margin: 0;
   }
@@ -1050,20 +1113,20 @@ export default function DocsPage() {
   }
 
   .copy-btn {
-    background: #111111;
-    color: #c0c0c0;
+    background: #39ff14;
+    color: #0a0a0a;
     border-radius: 8px;
     padding: 10px 14px;
     font-weight: 800;
-    border: 1px solid #333333;
+    border: none;
     cursor: pointer;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
   }
 
   .copy-btn:hover {
-    background: #222222;
+    opacity: 0.85;
     transform: translateY(-1px);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.4);
+    box-shadow: 0 8px 18px rgba(57,255,20,0.35);
   }
 
   /* FAQ */
@@ -1076,37 +1139,43 @@ export default function DocsPage() {
   }
 
   .faq-item {
-    background: #111111;
+    background: #0d140d;
     padding: 24px;
     border-radius: 8px;
-    border: 1px solid #333333;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+    border: 1px solid #1a2e1a;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    transition: border-color 0.2s ease;
+  }
+
+  .faq-item:hover {
+    border-color: #2a4a2a;
   }
 
   .faq-item h3 {
     margin: 0 0 12px 0;
-    color: #ffffff;
+    color: #c8ffc8;
   }
 
   .faq-item p {
     margin: 0;
-    color: #c0c0c0;
+    color: #b0c4b0;
   }
 
   /* Tips */
   .tips {
-    background: #1a1a1a;
+    background: #0a1a0a;
     padding: 20px;
     border-radius: 8px;
     margin: 24px 0;
     width: 100%;
-    border-left: 4px solid #333333;
-    border: 1px solid #333333;
+    border-left: 4px solid #39ff14;
+    border: 1px solid #1a2e1a;
+    border-left: 4px solid #39ff14;
   }
 
   .tips h3 {
     margin: 0 0 12px 0;
-    color: #ffffff;
+    color: #39ff14;
   }
 
   .tips ul {
@@ -1114,7 +1183,7 @@ export default function DocsPage() {
   }
 
   .tips li {
-    color: #c0c0c0;
+    color: #b0c4b0;
   }
 
   /* Box Types */
@@ -1127,96 +1196,111 @@ export default function DocsPage() {
   }
 
   .box-type-card {
-    background: #111111;
+    background: #0d140d;
     padding: 20px;
     border-radius: 8px;
-    border-left: 4px solid #333333;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.45);
-    border: 1px solid #333333;
+    border-left: 4px solid #39ff14;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    border: 1px solid #1a2e1a;
+    border-left: 4px solid #39ff14;
   }
 
   .box-type-card h3 {
     margin: 0 0 8px 0;
-    color: #ffffff;
+    color: #c8ffc8;
   }
 
   .box-type-card p {
     margin: 0;
-    color: #c0c0c0;
+    color: #7a9a7a;
     font-size: 14px;
   }
 
   /* Info Box */
   .info-box {
-    background: #1a1a1a;
+    background: #0a1a0a;
     padding: 24px;
     border-radius: 8px;
-    border-left: 4px solid #333333;
+    border-left: 4px solid #39ff14;
     margin: 32px 0;
     width: 100%;
-    border: 1px solid #333333;
+    border: 1px solid #1a3a1a;
+    border-left: 4px solid #39ff14;
+    box-shadow: 0 0 20px rgba(57,255,20,0.05);
   }
 
   .info-box h3 {
     margin: 0 0 12px 0;
-    color: #ffffff;
+    color: #39ff14;
   }
 
   .info-box p {
     margin: 8px 0;
-    color: #c0c0c0;
+    color: #b0c4b0;
   }
 
   .info-box ul {
     margin: 12px 0;
     padding-left: 24px;
-    color: #c0c0c0;
+    color: #b0c4b0;
   }
 
   .info-box li {
     margin: 6px 0;
-    color: #c0c0c0;
+    color: #b0c4b0;
   }
 
   /* Mobile Warning */
   .mobile-warning {
-    background: #1a1a1a;
+    background: #1a0e0a;
     padding: 20px;
     border-radius: 8px;
-    border-left: 4px solid #333333;
+    border-left: 4px solid #ff6b1a;
     margin: 24px 0;
     width: 100%;
-    border: 1px solid #333333;
+    border: 1px solid #2e1a0e;
+    border-left: 4px solid #ff6b1a;
   }
 
   .mobile-warning p {
     margin: 8px 0;
-    color: #c0c0c0;
+    color: #c4b0a0;
   }
 
   .mobile-warning strong {
-    color: #ffffff;
+    color: #ff9955;
   }
 
   /* Tip Box */
   .tip-box {
-    background: #1a1a1a;
+    background: #0a1a0a;
     padding: 20px;
     border-radius: 8px;
-    border-left: 4px solid #333333;
+    border-left: 4px solid #39ff14;
     margin: 24px 0;
     width: 100%;
-    border: 1px solid #333333;
+    border: 1px solid #1a2e1a;
+    border-left: 4px solid #39ff14;
   }
 
   .tip-box h3 {
     margin: 0 0 12px 0;
-    color: #ffffff;
+    color: #39ff14;
   }
 
   .tip-box p {
     margin: 0;
-    color: #c0c0c0;
+    color: #b0c4b0;
+  }
+
+  .tip-box ul {
+    margin: 8px 0;
+    padding-left: 24px;
+  }
+
+  .tip-box li {
+    color: #b0c4b0;
+    margin: 4px 0;
   }
 
   /* License & Credits */
@@ -1227,32 +1311,33 @@ export default function DocsPage() {
   .license-content p {
     margin: 16px 0;
     line-height: 1.6;
-    color: #c0c0c0;
+    color: #b0c4b0;
   }
 
   .disclaimer-box {
-    background: #1a1a1a;
+    background: #0a1a0a;
     padding: 20px;
     border-radius: 8px;
-    border-left: 4px solid #333333;
+    border-left: 4px solid #39ff14;
     margin: 24px 0;
-    border: 1px solid #333333;
+    border: 1px solid #1a2e1a;
+    border-left: 4px solid #39ff14;
   }
 
   .disclaimer-box h3 {
     margin: 0 0 12px 0;
-    color: #ffffff;
+    color: #39ff14;
   }
 
   .disclaimer-box ul {
     margin: 12px 0;
     padding-left: 24px;
-    color: #c0c0c0;
+    color: #b0c4b0;
   }
 
   .disclaimer-box li {
     margin: 8px 0;
-    color: #c0c0c0;
+    color: #b0c4b0;
   }
 
   .credits-content {
@@ -1263,34 +1348,35 @@ export default function DocsPage() {
   }
 
   .credit-card {
-    background: #111111;
+    background: #0d140d;
     padding: 24px;
     border-radius: 8px;
-    border-left: 4px solid #333333;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.45);
-    border: 1px solid #333333;
+    border-left: 4px solid #39ff14;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    border: 1px solid #1a2e1a;
+    border-left: 4px solid #39ff14;
   }
 
   .credit-card h3 {
     margin: 0 0 12px 0;
-    color: #ffffff;
+    color: #39ff14;
   }
 
   .credit-card p {
     margin: 8px 0;
-    color: #c0c0c0;
+    color: #b0c4b0;
     line-height: 1.6;
   }
 
   .docs-footer { 
-    border-top: 1px solid #333333; 
-    background: #111111; 
+    border-top: 1px solid #1a2e1a; 
+    background: #0d0d0d; 
     padding: 24px; 
     text-align: center; 
-    color: #c0c0c0; 
+    color: #5a7a5a; 
     width: 100%;
     margin: 0;
-    box-shadow: 0 -4px 12px rgba(0,0,0,0.4);
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.6), 0 -1px 0 rgba(57,255,20,0.1);
   }
 
   .footer-container {
@@ -1308,26 +1394,25 @@ export default function DocsPage() {
       bottom: 0; 
       width: 82%; 
       max-width: 320px; 
-      border-right: 1px solid #333333; 
+      border-right: 1px solid #1a2e1a; 
       border-bottom: none; 
-      background: #111111; 
+      background: #0d0d0d; 
       transform: translateX(-100%); 
       transition: transform 200ms ease; 
       z-index: 40; 
       height: auto; 
       padding: 0;
       overflow: auto; 
-      box-shadow: inset 0 0 18px rgba(0,0,0,0.6);
+      box-shadow: inset 0 0 18px rgba(0,0,0,0.8);
     }
     .sidebar-content {
       padding: 16px 0;
     }
-    .docs-sidebar.open { transform: translateX(0); box-shadow: 2px 0 12px rgba(0,0,0,0.15); }
-    .backdrop { position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.25); z-index: 35; }
+    .docs-sidebar.open { transform: translateX(0); box-shadow: 2px 0 20px rgba(0,0,0,0.5), 0 0 15px rgba(57,255,20,0.05); }
+    .backdrop { position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 35; }
     .nav-item { padding: 16px 24px; font-size: 16px; }
     .content-container { padding: 24px; }
     
-    /* Add mobile-specific scroll margin */
     .docs-content h1,
     .docs-content h2 {
       scroll-margin-top: 72px;
@@ -1360,7 +1445,6 @@ export default function DocsPage() {
       padding: 16px;
     }
     
-    /* Adjust scroll margin for very small screens */
     .docs-content h1,
     .docs-content h2 {
       scroll-margin-top: 68px;

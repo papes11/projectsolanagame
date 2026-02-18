@@ -255,7 +255,7 @@ export default function SwapPage() {
                   pumpfun
                 </a> */}
               </div>
-              <span>© {new Date().getFullYear()} Pokepixel. All rights reserved.</span>
+              <span style={{ color: 'white' }}>© {new Date().getFullYear()} Pokepixel. All rights reserved.</span>
             </div>
           </footer>
         </div>
