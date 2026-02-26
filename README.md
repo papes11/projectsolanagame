@@ -172,25 +172,6 @@ The game will be available at: **http://localhost:3000**
 
 ---
 
-## 🔐 Environment Variables
-
-Create a `.env.local` file:
-
-```env
-NEXT_PUBLIC_RECIPIENT_ADDRESS=Emo62hDD3NppK3K7A5PLF7CwEy2eJpCYnVM6zMwtjZ16
-RPC_ENDPOINT=https://api.devnet.solana.com
-MERKLE_TREE_ADDRESS=REPLACE_WITH_YOUR_TREE
-SIGNER_SECRET_KEY=REPLACE_WITH_B58_SECRET_ON_SERVER
-MINT_NAME=QN Pixel
-MINT_SYMBOL=QNPIX
-MINT_URI=https://qn-shared.quicknode-ipfs.com/ipfs/QmQFh6WuQaWAMLsw9paLZYvTsdL5xJESzcoSxzb6ZU3Gjx
-MINT_SELLER_FEE_BPS=500
-
-⚠️ **Do NOT expose `SIGNER_SECRET_KEY` publicly.**  
-On Vercel, configure secure environment variables in project settings.
-
----
-
 ## 🤝 Contributing
 
 1. Fork the repository
