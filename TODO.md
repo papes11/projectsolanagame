@@ -2,7 +2,7 @@
 
 ===========
 
-- *optional*Add SPL token requirement for box opening (configured in src/app/constants.ts)
+- *OPTIONAL* Add SPL token requirement for box opening (configured in src/app/constants.ts)
 - Add more maps
 - Implement escape rope
 - Gym leaders shouldn't auto encounter, you need to talk to them
