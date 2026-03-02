@@ -271,10 +271,11 @@ adb install pokepixel-psg1.apk
 ## Roadmap
 
 **Done**
-- Responsive layout for 800x480
+- Responsive layout
+- web based beta online
 - Wallet auto-connection
 - Button mapping
-- 3x reward multiplier
+- reward multiplier
 
 **Next (1months)**
 - PSG1 detection in prod
@@ -303,8 +304,6 @@ Play<Gate> is the official PSG1 game store. When we're ready:
 - 5–10 screenshots + 30–60s trailer
 - Solana program address on file
 - Beta test results from 10+ users
-
-Submit at developers.playsolana.com — review takes 7–14 days
 
 ## Resources
 
