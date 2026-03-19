@@ -4,7 +4,8 @@
     --text-light: #f5f5f5;
     --primary-color: #00ff7f; /* Neon Green/Mint accent */
     --accent-blue: #4a90e2; /* Blue for 'Connect Wallet' */
-    --silver: #c0c0c0; /* Silver color */
+    --silver: #c0c0c0;
+    --orange:var(--orange) /* Silver color */
     /* Add fallbacks in case fonts aren't loaded */
     --font-heading: 'Press Start 2P', monospace;
     --font-body: 'Roboto', sans-serif;
@@ -14,6 +15,10 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+html, body {
+    overflow-x: hidden;
 }
 
 body {
@@ -110,6 +115,10 @@ h1 {
 /* Silver text styling */
 .silver-text {
     color: var(--silver);
+}
+
+.orange-text {
+    color: var(--orange);
 }
 
 .silver-link {
@@ -241,6 +250,98 @@ h1 {
     /* Next.js Image component handles width/height within the wrapper */
     /* Neon glow effect */
     filter: drop-shadow(0 0 25px rgba(0, 255, 127, 0.6));
+}
+
+/* --- 6. Promise Cards --- */
+.promise-section {
+    padding: 60px 20px;
+    text-align: center;
+    background:
+        radial-gradient(1200px 420px at 50% -10%, rgba(0, 255, 127, 0.14), rgba(18, 18, 18, 0) 60%),
+        radial-gradient(900px 380px at 90% 15%, rgba(74, 144, 226, 0.10), rgba(18, 18, 18, 0) 60%),
+        rgba(18, 18, 18, 0.35);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.promise-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.promise-lede {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    line-height: 1.55;
+    margin: 0 auto 26px;
+    max-width: 920px;
+}
+
+.promise-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+}
+
+.promise-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    padding: 18px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+    transform: translateY(0);
+    transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.promise-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(520px 160px at 20% 0%, rgba(0, 255, 127, 0.16), transparent 60%);
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.promise-card::after {
+    content: "";
+    position: absolute;
+    left: -45%;
+    top: -55%;
+    width: 40%;
+    height: 210%;
+    transform: rotate(25deg);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 700ms ease, opacity 250ms ease;
+}
+
+.promise-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 255, 127, 0.35);
+    box-shadow: 0 14px 55px rgba(0, 0, 0, 0.35);
+}
+
+.promise-card:hover::after {
+    opacity: 1;
+    transform: translateX(360%) rotate(25deg);
+}
+
+.promise-card-title {
+    position: relative;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.promise-card-body {
+    position: relative;
+    font-size: 1rem;
+    opacity: 0.9;
+    line-height: 1.55;
 }
 
 /* --- 6. Footer --- */
@@ -387,9 +488,10 @@ h1 {
     max-width: 800px;
     padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
     height: 0;
-    
+    margin: 0 auto;
     overflow: hidden;
     align-items: center;
+    justify-content: center;
 }
 
 .youtube-video {
@@ -426,6 +528,8 @@ h1 {
     /* Reset Navbar for Desktop */
     .navbar {
         padding: 20px 80px;
+        max-width: 100%;
+        overflow: hidden;
     }
 
     .hamburger-btn, .menu-toggle {
@@ -453,9 +557,27 @@ h1 {
         margin-top: 0;
         margin-left: 30px;
     }
+
+    .promise-section {
+        padding: 80px 80px;
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    .promise-lede {
+        font-size: 1.8rem;
+        margin-bottom: 34px;
+    }
+
+    .promise-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+    }
     
     .game-highlight {
         padding: 80px 80px;
+        box-sizing: border-box;
+        width: 100%;
     }
     
     .highlight-title {
@@ -500,8 +622,10 @@ h1 {
         justify-content: space-between;
         padding: 100px 80px;
         max-width: 1200px;
+        width: 100%;
         margin: 0 auto;
         text-align: left;
+        box-sizing: border-box;
     }
 
     .content-left {
@@ -540,112 +664,243 @@ h1 {
     }
 }
 
-/* --- Popup Styles --- */
+/* --- Waitlist Popup Styles --- */
 .popup-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  backdrop-filter: blur(4px);
+  padding: 16px;
 }
 
 .popup-content {
-  background: linear-gradient(180deg, rgba(47,27,65,0.92) 0%, rgba(27,16,36,0.92)100%);
-  border: 1px solid #4B0082;
-  border-radius: 16px;
-  padding: 24px;
-  width: 90%;
-  max-width: 500px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
-  color: #FFFFFF;
+  background: #1a1a2e;
+  border: 3px solid #39ff14;
+  border-radius: 4px;
+  padding: 32px 28px 24px;
+  width: 100%;
+  max-width: 420px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 0 0 1px #000, 0 0 40px rgba(57,255,20,0.25), inset 0 0 60px rgba(0,0,0,0.4);
+  color: #fff;
+  position: relative;
+  image-rendering: pixelated;
+}
+
+/* pixel corner decorations */
+.popup-content::before,
+.popup-content::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #39ff14;
+}
+.popup-content::before { top: -3px; left: -3px; }
+.popup-content::after  { bottom: -3px; right: -3px; }
+
+.popup-dino-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.popup-dino-icon {
+  font-size: 48px;
+  display: block;
+  animation: dino-bounce 0.6s steps(2) infinite;
+  margin-bottom: 8px;
+}
+
+@keyframes dino-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
 }
 
 .popup-content h2 {
-  color: #FF8C00;
+  font-family: 'Press Start 2P', monospace;
+  color: #39ff14;
   text-align: center;
-  font: bold;
-  margin-top: 0;
+  font-size: 14px;
+  margin: 0 0 4px;
+  text-shadow: 0 0 10px rgba(57,255,20,0.6);
+  letter-spacing: 1px;
 }
 
-.popup-message {
-  color: #FFFFFF;
+.popup-subtitle {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: #888;
   text-align: center;
-  margin: 20px 0;
-  line-height: 1.5;
+  margin: 0 0 20px;
+  letter-spacing: 1px;
+}
+
+.popup-score-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0d0d1a;
+  border: 2px solid #333;
+  border-radius: 2px;
+  padding: 8px 12px;
+  margin-bottom: 20px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+}
+
+.popup-score-label { color: #555; }
+.popup-score-value { color: #39ff14; }
+
+.popup-message {
+  color: #aaa;
+  text-align: center;
+  margin: 0 0 20px;
+  line-height: 1.7;
+  font-size: 13px;
+}
+
+.popup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.popup-label {
+  color: #39ff14;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.popup-input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 2px;
+  border: 2px solid #333;
+  background: #0d0d1a;
+  color: #fff;
+  outline: none;
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.popup-input:focus {
+  border-color: #39ff14;
+  box-shadow: 0 0 0 3px rgba(57,255,20,0.15);
+}
+
+.popup-input::placeholder { color: #444; }
+
+.popup-error {
+  padding: 10px 14px;
+  border-radius: 2px;
+  color: #ff4444;
+  background: rgba(255,68,68,0.1);
+  border: 2px solid rgba(255,68,68,0.3);
+  text-align: center;
+  font-size: 12px;
+}
+
+.popup-success {
+  padding: 10px 14px;
+  border-radius: 2px;
+  color: #39ff14;
+  background: rgba(57,255,20,0.08);
+  border: 2px solid rgba(57,255,20,0.3);
+  text-align: center;
+  font-size: 12px;
+  font-family: 'Press Start 2P', monospace;
+  line-height: 1.8;
 }
 
 .popup-actions {
   display: flex;
-  gap: 12px;
-  margin-top: 20px;
-  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
 }
 
 .popup-button {
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid #39ff14;
+  border-radius: 2px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.2s ease;
-  background: var(--primary-color);
-  color: #FFFFFF;
+  transition: all 0.15s;
+  letter-spacing: 1px;
 }
 
-.popup-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+.popup-button[type="submit"] {
+  background: #39ff14;
+  color: #000;
 }
 
-.popup-button:active {
-  transform: translateY(0);
+.popup-button[type="submit"]:hover:not(:disabled) {
+  background: #fff;
+  border-color: #fff;
+  box-shadow: 0 0 16px rgba(57,255,20,0.5);
 }
 
-.loading-message, .info-message, .error-message {
-  padding: 16px 20px;
-  text-align: center;
-  font-size: 14px;
-  border-bottom: 1px solid rgba(75,0,130,0.35);
-  border-radius: 8px;
-  margin: 15px 0;
+.popup-button[type="button"] {
+  background: transparent;
+  color: #555;
+  border-color: #333;
 }
 
-.loading-message {
-  color: #d6c3ff;
-  background: rgba(75,0,130,0.35);
+.popup-button[type="button"]:hover:not(:disabled) {
+  border-color: #666;
+  color: #aaa;
 }
 
-.info-message {
-  color: greenyellow;
-  background: rgba(255, 140, 0, 0.1);
+.popup-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-.error-message {
-  color: #FF4500;
-  background: rgba(255, 69, 0, 0.1);
+.popup-pixel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #222;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: #333;
+  letter-spacing: 1px;
+}
+
+.popup-pixel-dot {
+  width: 6px;
+  height: 6px;
+  background: #39ff14;
+  border-radius: 0;
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
 
 /* Mobile responsiveness for popup */
 @media (max-width: 600px) {
   .popup-content {
-    padding: 16px;
+    padding: 24px 16px 20px;
   }
-  
   .popup-actions {
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    display: flex;
   }
-  
-  .popup-button {
-    width: 100%;
-  }
+  .popup-button { width: 100%; }
 }
 .walletconnect {
   position: relative;

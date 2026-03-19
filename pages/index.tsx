@@ -4,7 +4,7 @@
 import "./styles.css"
 import Image from 'next/image';
 import Link from "next/link";
-import { useState, type ChangeEvent } from 'react'; // Importing types for event handling
+import { useState, type ChangeEvent, type FormEvent } from 'react'; // Importing types for event handling
 import ClaimPopup from "../src/components/ClaimPopup";
 
 export default function HomePage(): JSX.Element {
@@ -12,6 +12,11 @@ export default function HomePage(): JSX.Element {
   // State for image slider
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isClaimPopupOpen, setIsClaimPopupOpen] = useState(false);
+  const [isEmailPopupOpen, setIsEmailPopupOpen] = useState(false);
+  const [emailTo, setEmailTo] = useState("");
+  const [emailStatus, setEmailStatus] = useState<
+    { state: "idle" } | { state: "sending" } | { state: "success"; message: string } | { state: "error"; message: string }
+  >({ state: "idle" });
   
   const slides = [
     { src: "/looo.png", alt: "Game Screenshot 1" },
@@ -52,6 +57,43 @@ export default function HomePage(): JSX.Element {
   const handleMenuToggle = (e: ChangeEvent<HTMLInputElement>): void => {
     console.log(`Menu state changed to: ${e.target.checked ? 'Open' : 'Closed'}`);
     // State management for navigation could be added here if needed
+  };
+
+  const isValidEmail = (value: string): boolean => {
+    const v = value.trim();
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  };
+
+  const sendEmail = async (): Promise<void> => {
+    const email = emailTo.trim();
+    if (!isValidEmail(email)) {
+      setEmailStatus({ state: "error", message: "Please enter a valid email address." });
+      return;
+    }
+
+    setEmailStatus({ state: "sending" });
+    try {
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data: any = await res.json().catch(() => ({}));
+      if (!res.ok || !data?.ok) {
+        setEmailStatus({ state: "error", message: data?.error ?? "Failed to send email." });
+        return;
+      }
+
+      setEmailStatus({ state: "success", message: "You're on the list!do tuned." });
+    } catch (err: any) {
+      setEmailStatus({ state: "error", message: err?.message ?? "Failed to send email." });
+    }
+  };
+
+  const closeEmailPopup = (): void => {
+    setIsEmailPopupOpen(false);
+    setEmailStatus({ state: "idle" });
   };
 
   // Typed handler for wallet connection
@@ -100,7 +142,10 @@ export default function HomePage(): JSX.Element {
           <h1 className="silver-text">PLAY. EARN. OWN. THE FUTURE OF WEB3 GAMING</h1>
           <p className="silver-text">Dive into POKEPIXEL, a decentralized adventure powered by Solana. Connect your wallet, find hidden treasure, open loot boxes, collect items, battle, trade, and earn crypto rewards.</p>
           <div className="hero-actions">
-            <button className="btn primary-btn" onClick={() => handleNavigation('/game')}>ENTER BETAV1</button>
+            <button className="btn primary-btn" onClick={() => handleNavigation('/game')}>TRY BETAV1</button>
+            <button className="btn secondary-btn orange-text" onClick={() => { setEmailStatus({ state: "idle" }); setIsEmailPopupOpen(true); }}>
+              waitlist
+            </button>
             <button className="btn secondary-btn silver-text" onClick={() => handleNavigation('/docs', false, true)}>LEARN MORE</button>
           </div>
         </div>
@@ -122,6 +167,38 @@ export default function HomePage(): JSX.Element {
       </main>
       
       {/* 🎮 Game Highlight Section */}
+      {/* Promise Cards */}
+      <section className="promise-section" aria-labelledby="promiseTitle">
+        <div className="promise-inner">
+          <h2 id="promiseTitle" className="promise-lede silver-text">
+            A pixel-first adventure where gameplay meets ownership, rewards, and real utility.
+          </h2>
+
+          <div className="promise-grid">
+            <div className="promise-card">
+              <div className="promise-card-title">Own What You Earn</div>
+              <div className="promise-card-body silver-text">
+                Collect items, open loot boxes, and keep your progress.
+              </div>
+            </div>
+
+            <div className="promise-card">
+              <div className="promise-card-title">Trade &amp; Upgrade</div>
+              <div className="promise-card-body silver-text">
+                Swap, trade, and build your loadout for battles and quests.
+              </div>
+            </div>
+
+            <div className="promise-card">
+              <div className="promise-card-title">Fast, Low-Fee</div>
+              <div className="promise-card-body silver-text">
+                Powered by Solana for smooth on-chain actions and rewards.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="game-highlight">
         <h2 className="highlight-title silver-text">SUPERNET HIGHLIGHTS</h2>
         <div className="highlight-content">
@@ -173,7 +250,7 @@ export default function HomePage(): JSX.Element {
           <Link href="/docs#credit">Contact</Link>
         </div>
         <div className="copyright silver-text">
-          &copy; 2025 POKEPIXEL
+          &copy; 2026 POKEPIXEL
         </div>
       </footer>
 
@@ -182,6 +259,68 @@ export default function HomePage(): JSX.Element {
         isOpen={isClaimPopupOpen} 
         onClose={() => setIsClaimPopupOpen(false)} 
       />
+
+      {/* Email Popup */}
+      {isEmailPopupOpen ? (
+        <div className="popup-overlay" role="dialog" aria-modal="true" aria-label="Send email">
+          <div className="popup-content">
+            <h2>Get SURPERNET EARLY UPDATES</h2>
+            <p className="popup-message">
+              Enter your email and we’ll send a quick message to confirm.
+            </p>
+
+            <form
+              className="popup-form"
+              onSubmit={(e: FormEvent<HTMLFormElement>) => {
+                e.preventDefault();
+                void sendEmail();
+              }}
+            >
+              <label className="popup-label" htmlFor="emailTo">
+                Email
+              </label>
+              <input
+                id="emailTo"
+                className="popup-input"
+                type="email"
+                inputMode="email"
+                autoComplete="email"
+                placeholder="you@example.com"
+                value={emailTo}
+                onChange={(e) => setEmailTo(e.target.value)}
+                disabled={emailStatus.state === "sending"}
+                required
+              />
+
+              {emailStatus.state === "error" ? (
+                <div className="popup-error">{emailStatus.message}</div>
+              ) : null}
+              {emailStatus.state === "success" ? (
+                <div className="popup-success">{emailStatus.message}</div>
+              ) : null}
+
+              <div className="popup-actions">
+                <button
+                  type="submit"
+                  className="popup-button"
+                  disabled={emailStatus.state === "sending"}
+                >
+                  {emailStatus.state === "sending" ? "SENDING..." : "SEND"}
+                </button>
+                <button
+                  type="button"
+                  className="popup-button"
+                  onClick={closeEmailPopup}
+                  disabled={emailStatus.state === "sending"}
+                >
+                  CLOSE
+                </button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
