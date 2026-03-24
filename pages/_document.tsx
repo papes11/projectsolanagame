@@ -4,7 +4,8 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        {/* PWA Meta Tags */}
+        
+      {/* PWA Meta Tags */}
         <meta name="application-name" content="Pokepixel" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
