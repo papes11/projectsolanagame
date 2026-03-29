@@ -137,7 +137,7 @@ export default function BetaSignup({ isOpen, onClose }: Props) {
             />
             <p className="beta-code-hint">
               🔗 Join our{" "}
-              <a href="https://t.me/pokepixel" target="_blank" rel="noopener noreferrer">
+              <a href="https://t.me/pokepixelsolana" target="_blank" rel="noopener noreferrer">
                 Telegram group
               </a>{" "}
               to get your invite code

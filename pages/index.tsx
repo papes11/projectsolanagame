@@ -143,7 +143,7 @@ export default function HomePage(): JSX.Element {
           <button
             className="btn secondary-btn silver-text"
             onClick={() =>
-              handleNavigation("https://t.me/pokepixel", true, true)
+              handleNavigation("https://t.me/pokepixelsolana", true, true)
             }
           >
             TELEGRAM
@@ -377,7 +377,7 @@ export default function HomePage(): JSX.Element {
               </a>
 
               <a
-                href="https://t.me/pokepixel"
+                href="https://t.me/pokepixelsolana"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-social-btn"
