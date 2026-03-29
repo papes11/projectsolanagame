@@ -3,11 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import ClaimPopup from "../src/components/ClaimPopup";
+import BetaSignup from "../src/components/BetaSignup";
 import { Send, X } from "lucide-react";
 
 export default function HomePage(): JSX.Element {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isClaimPopupOpen, setIsClaimPopupOpen] = useState(false);
+  const [isBetaSignupOpen, setIsBetaSignupOpen] = useState(false);
   const [isEmailPopupOpen, setIsEmailPopupOpen] = useState(false);
   const [emailTo, setEmailTo] = useState("");
   const [emailStatus, setEmailStatus] = useState<
@@ -146,12 +148,12 @@ export default function HomePage(): JSX.Element {
           >
             TELEGRAM
           </button>
-          <button
+          {/* <button
             className="btn primary-btn"
             onClick={() => handleNavigation("/game")}
           >
             ENTER GAME
-          </button>
+          </button> */}
         </nav>
       </header>
 
@@ -169,9 +171,9 @@ export default function HomePage(): JSX.Element {
           <div className="hero-actions">
             <button
               className="btn primary-btn"
-              onClick={() => handleNavigation("/game")}
+              onClick={() => setIsBetaSignupOpen(true)}
             >
-              TRY BETAV1
+              BETA ENTER
             </button>
             <button
               className="btn secondary-btn orange-text"
@@ -421,6 +423,12 @@ export default function HomePage(): JSX.Element {
       <ClaimPopup
         isOpen={isClaimPopupOpen}
         onClose={() => setIsClaimPopupOpen(false)}
+      />
+
+      {/* Beta Signup Popup */}
+      <BetaSignup
+        isOpen={isBetaSignupOpen}
+        onClose={() => setIsBetaSignupOpen(false)}
       />
 
       {/* Email / Waitlist Popup */}
