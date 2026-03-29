@@ -496,7 +496,7 @@ export default function HomePage(): JSX.Element {
                     className="popup-button"
                     onClick={closeEmailPopup}
                   >
-                    ESC
+                    Close
                   </button>
                 </div>
               ) : (
