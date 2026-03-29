@@ -180,7 +180,7 @@ export default function HomePage(): JSX.Element {
                 setIsEmailPopupOpen(true);
               }}
             >
-              Supernet WAITLIST
+              WAITLIST
             </button>
             <button
               className="btn secondary-btn silver-text"
